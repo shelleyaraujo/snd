@@ -1,0 +1,177 @@
+<?php include_once "_compress_code.php"; ?>
+<?php include_once "head.php"; ?>
+
+<body>
+
+  <title><?php echo $meta[8]?></title>  
+
+  <?php include_once "estilo.php"; ?>
+  <?php include_once "_js_geral.php"; ?>
+
+  <style>
+
+    #formas-pagamento-disponiveis {
+     text-align: center;
+     margin-bottom: 20px;
+   }
+
+   #formas-pagamento {
+     display: -webkit-box;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;  
+     align-items: center;
+     align-content: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     box-sizing: border-box;
+     width: 100%;
+     max-width: 1024px;
+     margin: 0 auto;
+     margin-bottom: 0;
+   }
+
+   #formas-pagamento > div {
+    background-color: white;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+    padding: 15px;
+    padding-top: 100px;
+  }
+
+  #forma-pagseguro {
+    background-position: center top 15px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-image: url(./../../imagens/loja/b-pagseguro.png);
+  }
+
+  #forma-pedido-via-email {
+    background-position: center top 15px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-image: url(./../../imagens/loja/b-pedido.png);
+  }
+
+  @media (min-width: 768px) {
+
+#formas-pagamento {
+     display: -webkit-box;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;  
+     align-items: stretch;
+     align-content: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     box-sizing: border-box;
+     width: 100%;
+     max-width: 1024px;
+     margin: 0 auto;
+     margin-bottom: 20px;
+   }
+
+   #formas-pagamento > div {
+    width: 25%;
+    width: calc(25% - 20px);
+    margin: 0 10px;
+    max-width: 300px;
+  }
+
+}
+
+</style>
+
+
+ <?php include_once "cabecalho.php"; ?>
+
+ <main>
+
+   <div class="cnt-titulo">
+    <?php echo $conteudo_titulo; ?>
+    <?php echo $_SESSION["email"]?>
+  </div>
+
+  <div class="cnt-conteudo">
+
+    <div id="formas-pagamento-disponiveis">
+     Formas de Pagamento disponíveis:
+   </div>
+
+   <div id="formas-pagamento">
+
+     <div id="forma-pagseguro">
+       <!-- SANDBOX -->
+       <form id="comprar" action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="pag_seguro(); return false">
+        <!--PRODUCAO 
+       <form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">-->
+         <input type="hidden" name="code" id="code" value="" />
+         <input class="botao-pagseguro" type="submit" value="Continuar"/>
+       </form>
+
+       <!-- SANDBOX 
+       <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+        -->
+        <!--PRODUCAO 
+       <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+-->
+<p>Ao finalizar a compra no PagSeguro, favor clicar em "Voltar no Site" ou esperar 1 minuto para retornar automaticamente.
+   </p>  </div>
+
+     <div id="forma-pedido-via-email">
+       <form id="comprar" action="<?php echo myUrl() ?>pagamento/enviar_orcamento/?email=<?php echo $_SESSION["email"]; ?>" method="post">
+         <input class="" type="submit" value="Enviar Pedido"/>
+       </form><p>Seu pedido será enviado por email e entraremos em contato para combinar a forma de pagamento e a entrega. 
+   </p> 
+    </div>
+
+  </div>
+
+  <div id="info"></div>
+
+</div>
+
+</main>
+
+
+<?php include_once "rodape.php"; ?>
+
+</body>
+
+</html>
+
+<?php include_once "_final.php"; ?>
+
+
+
+<script>
+
+function pag_seguro() {
+
+  var o_code = document.getElementById("code");
+  var o_info = document.getElementById("info");
+
+
+  xhr = new XMLHttpRequest();
+  xhr.open('POST', '<?php  echo myUrl('pagamento/pag_seguro') ?>');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+     o_code.value = xhr.responseText;
+     alert(xhr.responseText);
+   }
+   else if (xhr.status !== 200) {
+    o_info.innerHTML = (xhr.status);
+  }
+};
+xhr.send(encodeURI());
+   alert(o_code.value);
+}
+
+
+</script>

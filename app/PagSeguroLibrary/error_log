@@ -1,0 +1,2 @@
+[17-Oct-2021 06:44:24 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/a753almb/public_html/loja/app/PagSeguroLibrary/index.php on line 11
+[17-Oct-2021 06:44:24 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/a753almb/public_html/loja/app/PagSeguroLibrary/parser/PagSeguroPaymentParser.class.php on line 97
