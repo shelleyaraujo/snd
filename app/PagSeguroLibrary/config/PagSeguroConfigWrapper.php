@@ -31,15 +31,15 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "shelleyaraujo@gmail.com";
+    const PAGSEGURO_EMAIL = "xxx@gmail.com";
     /**
      *
      */
-    const PAGSEGURO_TOKEN_PRODUCTION = "aba064bb-6bba-483e-8c75-00227a8eccf198c0bd93487aa790f14898fd1c264599578c-d8ae-44e8-9bf0-22785109044c";
+    const PAGSEGURO_TOKEN_PRODUCTION = "xxx";
     /**
      *
      */
-    const PAGSEGURO_TOKEN_SANDBOX = "A299FDCF2E9446FFA3ABBA27F17E9C08";
+    const PAGSEGURO_TOKEN_SANDBOX = "xxx";
     /**
      *
      */
@@ -47,7 +47,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_ID_SANDBOX = "app9172850776";
+    const PAGSEGURO_APP_ID_SANDBOX = "xxx";
     /**
      *
      */
@@ -55,7 +55,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_SANDBOX = "9F28A5F676763A4BB4882FA815D34F51";
+    const PAGSEGURO_APP_KEY_SANDBOX = "xxx";
     /**
      * UTF-8, ISO-8859-1
      */
